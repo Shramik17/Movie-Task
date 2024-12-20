@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../Navbar/Navbar';
 
 const Upcoming = () => {
      const [movies, setMovies] = useState([]);
@@ -23,28 +24,7 @@ const Upcoming = () => {
         }, []);
   return (
     <>
-        <nav className="flex justify-around p-4 text-2xl items-center bg-gray-700 h-26">
-            <div>
-            <h1 className="cursor-pointer text-white text-3xl">MovieDb</h1>
-            </div>
-            <div className="flex gap-5 items-center">
-            <ul className="flex gap-4 list-none">
-                <li className="cursor-pointer hover:text-red-500 hover:underline text-white mr-11">Popular</li>
-                <li className="cursor-pointer hover:text-red-500 hover:underline text-white mr-11">Top Rated</li>
-                <li className="cursor-pointer hover:text-red-500 hover:underline text-white mr-11">Upcoming</li>
-            </ul>
-            <div>
-                <input
-                type="text"
-                placeholder="Search movie"
-                className="mr-2 text-center border-black p-2 rounded-md"
-                />
-                <button className="bg-black text-white p-2 rounded-md px-6" >
-                Search
-                </button>
-            </div>
-            </div>
-        </nav>
+       <Navbar/>
         <div className="movie-results p-4 bg-gray-100">
             {movies.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

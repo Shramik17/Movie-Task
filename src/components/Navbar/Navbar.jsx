@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -8,21 +9,20 @@ const Navbar = () => {
           <h1 className="cursor-pointer text-white text-3xl">MovieDb</h1>
           </div>
           <div className="flex gap-5 items-center">
-          <ul className="flex gap-4 list-none">
-              <li className="cursor-pointer hover:text-red-500 hover:underline text-white mr-11">Popular</li>
-              {/* <li className="cursor-pointer hover:text-red-500 hover:underline text-white mr-11">Top Rated</li> */}
-              <Link to='/top-rated'>Top Rated</Link>
-              <li className="cursor-pointer hover:text-red-500 hover:underline text-white mr-11">Upcoming</li>
-          </ul>
+          <div className="flex gap-4 list-none">
+            <Link to="/top-rated" className='hover:text-red-500 hover:underline text-3xl'>Top Rated</Link>
+            <Link to="/upcoming" className='hover:text-red-500 hover:underline text-3xl'>Upcoming</Link>
+            <Link to="/" className='hover:text-red-500 hover:underline text-3xl'>Popular</Link>
+          </div>
           <div>
               <input
               type="text"
               placeholder="Search movie"
               className="mr-2 text-center border-black p-2 rounded-md"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              // value={query}
+              // onChange={(e) => setQuery(e.target.value)}
               />
-              <button className="bg-black text-white p-2 rounded-md px-6" onClick={searchMovies}>
+              <button className="bg-black text-white p-2 rounded-md px-6">
               Search
               </button>
           </div>
