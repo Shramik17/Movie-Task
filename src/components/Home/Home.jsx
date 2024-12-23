@@ -4,9 +4,7 @@ import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
 
-  // Function to fetch popular movies
   const fetchPopularMovies = async () => {
     const apiKey = 'c45a857c193f6302f2b5061c3b85e743'; // Replace with your TMDB API key
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
@@ -19,25 +17,6 @@ const Home = () => {
     }
   };
 
-  // Function to search for movies based on the query
-  const searchMovies = async () => {
-    if (!query.trim()) {
-      fetchPopularMovies(); // If query is empty, fetch popular movies
-      return;
-    }
-
-    const apiKey = 'c45a857c193f6302f2b5061c3b85e743'; // Replace with your TMDB API key
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
-
-    try {
-      const response = await axios.get(url);
-      setMovies(response.data.results);
-    } catch (error) {
-      console.error('Error searching movies:', error);
-    }
-  };
-
-  // Fetch popular movies on component mount
   useEffect(() => {
     fetchPopularMovies();
   }, []);
@@ -45,24 +24,6 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="p-4 bg-gray-100">
-        {/* Search Bar */}
-        <div className="flex justify-center mb-6">
-          <input
-            type="text"
-            placeholder="Search movie"
-            className="mr-2 text-center border border-gray-300 p-2 rounded-md"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button
-            className="bg-blue-500 text-white p-2 rounded-md px-6"
-            onClick={searchMovies}
-          >
-            Search
-          </button>
-        </div>
-
         {/* Movie Results */}
         <div className="movie-results">
           {movies.length > 0 ? (
@@ -94,7 +55,6 @@ const Home = () => {
             <p className="text-center text-gray-500">No movies found.</p>
           )}
         </div>
-      </div>
     </>
   );
 };
